@@ -1,0 +1,32 @@
+--Create a Electronics store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, category TEXT, price INTEGER, popularity INTEGER);
+
+INSERT INTO store VALUES (1, "TV", "entertainment", 1500, 50);
+INSERT INTO store VALUES (2, "Camera", "misc", 500, 95);
+INSERT INTO store VALUES (3, "Laptop", "misc", 1000, 55);
+INSERT INTO store VALUES (4, "Video Game Console", "gaming", 500, 50);
+INSERT INTO store VALUES (5, "Cell Phone", "misc", 1000, 65);
+INSERT INTO store VALUES (6, "Fridge", "appliance", 2000, 43);
+INSERT INTO store VALUES (7, "Headphone", "misc", 200, 35);
+INSERT INTO store VALUES (8, "Sound Bar", "entertainment", 250, 50);
+INSERT INTO store VALUES (9, "Printer", "misc", 100, 75);
+INSERT INTO store VALUES (10, "Movies", "entertainment", 20, 25);
+INSERT INTO store VALUES (11, "Washer", "appliance", 1700, 33);
+INSERT INTO store VALUES (12, "Dryer", "appliance", 1700, 80);
+
+
+--display the database ordered by price. 
+SELECT * FROM store
+ORDER BY price desc; 
+
+--what is the avg price of items in the bulk section? 
+SELECT AVG(price) "avg bulk item price"
+FROM store
+where category='appliance'; 
+
+--what are the most 5 popular items? 
+SELECT item, price, popularity
+FROM store
+order by popularity desc
+limit 5; 
