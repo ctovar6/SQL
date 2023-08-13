@@ -48,3 +48,22 @@ INSERT INTO solar_system_objects(body,mean_radius,mean_radius_rel,volume,volume_
 
 select * from solar_system_objects;
 
+
+--Query gather all the data from solor system objects table and sort it by mass for easier visibility--
+
+select * from solar_system_objects
+order by mass desc;
+
+--Query to find the average mass of all the celestial bodies from the table--
+
+select avg(mass) as average_mass from solar_system_objects;
+
+
+--Query to find celestial body with biggest mass--
+
+select body, max(mass) as biggest_mass from solar_system_objects;
+
+
+--Query to find celestial body with smallest mass--
+
+ select body,min(mass) as smallest_mass from solar_system_objects;
