@@ -1,32 +1,62 @@
 --Create a Electronics store database
 
-CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, category TEXT, price INTEGER, popularity INTEGER);
+CREATE TABLE superstore (
+    item_id INTEGER PRIMARY KEY,
+    item_name TEXT,
+    category TEXT,
+    price DECIMAL(10, 2),
+    stock_quantity INTEGER,
+    average_rating DECIMAL(3, 2)
+);
 
-INSERT INTO store VALUES (1, "TV", "entertainment", 1500, 50);
-INSERT INTO store VALUES (2, "Camera", "misc", 500, 95);
-INSERT INTO store VALUES (3, "Laptop", "misc", 1000, 55);
-INSERT INTO store VALUES (4, "Video Game Console", "gaming", 500, 50);
-INSERT INTO store VALUES (5, "Cell Phone", "misc", 1000, 65);
-INSERT INTO store VALUES (6, "Fridge", "appliance", 2000, 43);
-INSERT INTO store VALUES (7, "Headphone", "misc", 200, 35);
-INSERT INTO store VALUES (8, "Sound Bar", "entertainment", 250, 50);
-INSERT INTO store VALUES (9, "Printer", "misc", 100, 75);
-INSERT INTO store VALUES (10, "Movies", "entertainment", 20, 25);
-INSERT INTO store VALUES (11, "Washer", "appliance", 1700, 33);
-INSERT INTO store VALUES (12, "Dryer", "appliance", 1700, 80);
+INSERT INTO superstore (item_id, item_name, category, price, stock_quantity, average_rating)
+VALUES
+    (1, 'Stainless Steel Cookware Set', 'Kitchen Supplies', 89.99, 50, 4.6),
+    (2, 'Memory Foam Mattress', 'Furnishings', 499.99, 30, 4.8),
+    (3, 'Smart LED TV', 'Electronics', 549.00, 20, 4.5),
+    (4, 'Robot Vacuum Cleaner', 'Appliances', 199.50, 40, 4.3),
+    (5, 'Wireless Bluetooth Speaker', 'Electronics', 39.99, 60, 4.2),
+    (6, 'Non-Stick Baking Set', 'Kitchen Supplies', 29.95, 80, 4.4),
+    (7, 'Cotton Bedding Set', 'Furnishings', 89.00, 25, 4.7),
+    (8, 'Smart Home Security Camera', 'Electronics', 79.95, 15, 4.1),
+    (9, 'Air Purifier', 'Appliances', 129.50, 35, 4.6),
+    (10, 'Premium Coffee Maker', 'Kitchen Supplies', 79.99, 50, 4.9),
+    (11, 'Ergonomic Office Chair', 'Furnishings', 189.00, 20, 4.5),
+    (12, 'Wireless Earbuds', 'Electronics', 49.99, 75, 4.3),
+    (13, 'Slow Cooker', 'Appliances', 49.95, 30, 4.7),
+    (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
+    (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
 
---display the database ordered by price. 
-SELECT * FROM store
-ORDER BY price desc; 
+--display the database ordered by price
 
---what is the avg price of items in the appliance section? 
-SELECT AVG(price) as Avg Appliance Item Price
-FROM store
-where category='appliance'; 
+select *
+from superstore
+order by price desc; 
 
---what are the most 5 popular items? 
-SELECT item, price, popularity
-FROM store
-order by popularity desc
-limit 5; 
+-- showing the sum, average, minimum, maximum, and count for the table
+
+select
+    SUM(price) AS total_price,
+    AVG(price) AS average_price,
+    MIN(price) AS min_price,
+    MAX(price) AS max_price,
+    COUNT(item_id) AS item_count
+from superstore;
+
+--find total price of items in the Kitchen Supplies
+
+select SUM(price) as total_price, category
+from superstore
+where category = 'Kitchen Supplies';
+
+select SUM(price) as total_price, category
+from superstore
+where category = 'Kitchen Supplies';
+
+--finding the items with higest average rating with price and stock included
+
+select item_name, price, stock_quantity, average_rating
+from superstore
+order by average_rating desc;
+
