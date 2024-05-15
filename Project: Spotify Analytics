@@ -26,4 +26,21 @@ time_signature integer NOT NULL
 
 #Then I inserted the Spotify Data .csv into the table.
 
-#Next, I explored the data using the following SQL. 
+# I determined who the Top 10 artists are by popularity
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 10;
+
+#Then determined who the Bottom 10 artists are by popularity
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity asc
+LIMIT 10;
+
+* determined determind which songs have the highest danceability rate while displaying their popularity
+SELECT track_name, artist_name, (danceability * 100 || '%') as danceability_percent, popularity
+FROM BIT_DB.spotifydata
+order by danceability_percent desc;
+
+
