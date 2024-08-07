@@ -106,3 +106,12 @@ Group By Sales_Agent_Name;
 
 
 #14 Which sales agent made the most dollars in sales in 2009?
+
+Select (e.FirstName || ' ' || e.LastName) as Sales_Agent_Name, ROUND(SUM(inv.Total), 2) as Total_Sales
+From chinook.employees e
+Join chinook.customers cus ON e.employeeid = cus.supportrepid
+Join chinook.invoices inv ON cus.customerid = inv.customerid
+Where e.title = 'Sales Support Agent'
+AND Inv.InvoiceDate LIKE '2009%'
+Group BY sales_agent_name
+Order BY ROUND(SUM(inv.Total), 2) DESC limit 1;
